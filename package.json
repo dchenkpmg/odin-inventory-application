@@ -29,6 +29,6 @@
     "nodemon": "^3.1.10"
   },
   "nodemonConfig": {
-    "ext": "js ejs"
+    "ext": "js ejs css"
   }
 }

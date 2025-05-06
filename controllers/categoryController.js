@@ -3,7 +3,7 @@ const db = require("../db/categoryQueries");
 async function getAllCategories(req, res) {
   const categories = await db.getAllCategories();
   res.render("categories/categories", {
-    title: "Categories",
+    title: "Genres",
     categories: categories,
   });
 }
@@ -20,7 +20,7 @@ async function getItemsByCategory(req, res) {
 
 async function createCategoryForm(req, res) {
   res.render("categories/create", {
-    title: "Create Category",
+    title: "Create Genre",
   });
 }
 
@@ -33,7 +33,7 @@ async function postCategory(req, res) {
 async function updateCategoryForm(req, res) {
   const categoryId = req.params.id;
   res.render("categories/update", {
-    title: "Update Category",
+    title: "Update Genre",
     categoryId: categoryId,
   });
 }

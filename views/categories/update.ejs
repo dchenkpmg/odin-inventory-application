@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%= title %></title>
+    <link rel="stylesheet" href="/form.css" />
   </head>
   <body>
     <h1><%= title %></h1>
     <form action="/categories/update/<%= categoryId %>" method="POST">
       <label for="genre">Genre:</label>
       <input type="text" id="genre" name="genre" required />
-      <button type="submit">Update Category</button>
+      <button type="submit">Update Genre</button>
     </form>
   </body>
 </html>

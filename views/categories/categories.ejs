@@ -4,24 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%= title %></title>
+    <link rel="stylesheet" href="/categories.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <% if (categories && categories.length > 0) { %>
-    <ul>
-      <% categories.forEach((category) => { %>
-      <li>
-        <a href="/categories/<%= category.id %>"><%= category.genre %></a>
-      </li>
-      <button>
-        <a href="/categories/update/<%= category.id %>">Update</a>
-      </button>
-      <form action="/categories/delete/<%= category.id %>" , method="POST">
-        <button type="submit">Delete</button>
-      </form>
-      <% }) %> <% } %>
-    </ul>
-    <a href="/categories/create">Create New Category</a>
-    <a href="/">View All Items</a>
+    <header>
+      <h1 class="page-title"><%= title %></h1>
+    </header>
+    <main>
+      <% if (categories && categories.length > 0) { %>
+      <section class="categories-list">
+        <ul>
+          <% categories.forEach((category) => { %>
+          <li class="category">
+            <a class="category-link" href="/categories/<%= category.id %>"
+              ><%= category.genre %></a
+            >
+            <div class="category-actions">
+              <a
+                class="update-link"
+                href="/categories/update/<%= category.id %>"
+                >Update</a
+              >
+              <form
+                class="delete-form"
+                action="/categories/delete/<%= category.id %>"
+                method="POST"
+              >
+                <button class="delete-button" type="submit">Delete</button>
+              </form>
+            </div>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+      <% } %>
+      <nav class="navigation">
+        <a class="create-link" href="/categories/create">Create New Category</a>
+        <a class="items-link" href="/">View All Items</a>
+      </nav>
+    </main>
   </body>
 </html>

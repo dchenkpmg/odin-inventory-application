@@ -4,16 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%= title %></title>
+    <link rel="stylesheet" href="/items.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <% if (items && items.length > 0) { %>
-    <ul>
-      <% items.forEach((item) => { %>
-      <li><%= item.game_name %></li>
-      <% }) %>
-    </ul>
-    <% } %>
-    <a href="/categories">View All Categories</a>
+    <header>
+      <h1 class="page-title"><%= title %></h1>
+    </header>
+    <main>
+      <% if (items && items.length > 0) { %>
+      <section class="items-list">
+        <ul>
+          <% items.forEach((item) => { %>
+          <li class="item">
+            <span class="item-name"><%= item.game_name %></span>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+      <% } %>
+      <nav class="navigation">
+        <a class="categories-link" href="/categories">View All Categories</a>
+      </nav>
+    </main>
   </body>
 </html>

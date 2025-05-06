@@ -3,14 +3,14 @@ const db = require("../db/itemQueries");
 async function getAllItems(req, res) {
   const items = await db.getAllItems();
   res.render("items/items", {
-    title: "Items",
+    title: "Games",
     items: items,
   });
 }
 
 async function createItemForm(req, res) {
   res.render("items/create", {
-    title: "Create Item",
+    title: "Create Game",
     categories: await db.getItemCategories(),
   });
 }
@@ -25,7 +25,7 @@ async function updateItemForm(req, res) {
   const itemId = req.params.id;
   const categories = await db.getItemCategories(itemId);
   res.render("items/update", {
-    title: "Update Item",
+    title: "Update Game",
     categories: categories,
     itemId: itemId,
   });

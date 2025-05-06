@@ -8,19 +8,19 @@ const query = `
 CREATE TABLE IF NOT EXISTS games (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   game VARCHAR(255) NOT NULL
-  FOREIGN KEY (id) REFERENCES games_genres(game_id)
 );
 
 CREATE TABLE IF NOT EXISTS genres (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   genre VARCHAR(255) NOT NULL
-  FOREIGN KEY (id) REFERENCES games_genres(genre_id)
 );
 
 CREATE TABLE IF NOT EXISTS games_genres (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   game_id INTEGER NOT NULL,
   genre_id INTEGER NOT NULL,
+  FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE,
+  FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE
 );
 
 INSERT INTO games (game) VALUES ('The Legend of Zelda: Breath of the Wild'), ('Super Mario Odyssey'), ('The Witcher 3: Wild Hunt'), ('Dark Souls III'), ('God of War'), ('Red Dead Redemption 2'), ('Hollow Knight'), ('Celeste'), ('Persona 5'), ('Final Fantasy VII Remake');

@@ -5,6 +5,7 @@ const categoryRouter = require("./routers/categoryRouter");
 const itemRouter = require("./routers/itemRouter");
 
 app.set("view engine", "ejs");
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use("/categories", categoryRouter);
 app.use("/", itemRouter);

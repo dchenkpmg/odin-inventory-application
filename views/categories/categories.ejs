@@ -11,9 +11,16 @@
     <ul>
       <% categories.forEach((category) => { %>
       <li>
-        <a href="/categories/<%= category.id %>"> <%= category.genre %> </a>
+        <a href="/categories/<%= category.id %>"><%= category.genre %></a>
       </li>
+      <button>
+        <a href="/categories/update/<%= category.id %>">Update</a>
+      </button>
+      <form action="/categories/delete/<%= category.id %>" , method="POST">
+        <button type="submit">Delete</button>
+      </form>
       <% }) %> <% } %>
     </ul>
+    <a href="/categories/create">Create New Category</a>
   </body>
 </html>

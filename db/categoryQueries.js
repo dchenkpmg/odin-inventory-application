@@ -1,7 +1,7 @@
 const pool = require("./pool");
 
 async function getAllCategories() {
-  const query = "SELECT * FROM genres";
+  const query = "SELECT * FROM genres ORDER BY genre";
   const { rows } = await pool.query(query);
   return rows;
 }
@@ -20,6 +20,12 @@ async function getItemsByCategory(categoryId) {
   return rows;
 }
 
+async function getCategoryName(categoryId) {
+  const query = "SELECT genre FROM genres WHERE id = $1";
+  const { rows } = await pool.query(query, [categoryId]);
+  return rows[0].genre;
+}
+
 async function createCategory(name) {
   const query = "INSERT INTO genres (genre) VALUES ($1)";
   await pool.query(query, [name]);
@@ -31,7 +37,7 @@ async function updateCategory(categoryId, name) {
 }
 
 async function deleteCategory(categoryId) {
-  const query = "DELETE FROM genres WHERE id = $1 CASCADE";
+  const query = "DELETE FROM genres WHERE id = $1";
   await pool.query(query, [categoryId]);
 }
 
@@ -41,4 +47,5 @@ module.exports = {
   createCategory,
   deleteCategory,
   updateCategory,
+  getCategoryName,
 };

@@ -11,28 +11,45 @@ async function getAllCategories(req, res) {
 async function getItemsByCategory(req, res) {
   const categoryId = req.params.id;
   const items = await db.getItemsByCategory(categoryId);
-  res.send(items);
-  // res.render("categories/items", {
-  //   items,
-  // });
+  const category = await db.getCategoryName(categoryId);
+  console.log(items);
+  res.render("categories/items", {
+    title: category,
+    items,
+  });
+}
+
+async function createCategoryForm(req, res) {
+  res.render("categories/create", {
+    title: "Create Category",
+  });
 }
 
 async function postCategory(req, res) {
-  const { name } = req.body;
-  await db.createCategory(name);
+  const { genre } = req.body;
+  await db.createCategory(genre);
   res.redirect("/categories");
+}
+
+async function updateCategoryForm(req, res) {
+  const categoryId = req.params.id;
+  res.render("categories/update", {
+    title: "Update Category",
+    categoryId: categoryId,
+  });
 }
 
 async function updateCategory(req, res) {
   const categoryId = req.params.id;
-  const { name } = req.body;
-  await db.updateCategory(categoryId, name);
-  res.redirect("/categories)");
+  const { genre } = req.body;
+  await db.updateCategory(categoryId, genre);
+  res.redirect("/categories");
 }
 
 async function deleteCategory(req, res) {
   const categoryId = req.params.id;
   await db.deleteCategory(categoryId);
+  res.redirect("/categories");
 }
 
 module.exports = {
@@ -41,4 +58,6 @@ module.exports = {
   postCategory,
   updateCategory,
   deleteCategory,
+  createCategoryForm,
+  updateCategoryForm,
 };

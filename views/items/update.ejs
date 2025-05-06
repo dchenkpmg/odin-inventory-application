@@ -10,6 +10,15 @@
     <form action="/update/<%= itemId %>" method="POST">
       <label for="game">Name:</label>
       <input type="text" id="game" name="game" required />
+      <% if (categories && categories.length > 0) { %> <%
+      categories.forEach((category) => { %>
+      <label>
+        <input type="checkbox" name="categories" value="<%= category.id %>" />
+        <%= category.genre %>
+      </label>
+      <% }) %> <% } else { %>
+      <p>No categories available.</p>
+      <% } %>
       <button type="submit">Update Game</button>
     </form>
   </body>

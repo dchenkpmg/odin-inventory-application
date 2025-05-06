@@ -9,9 +9,9 @@ async function getAllItems(req, res) {
 }
 
 async function createItemForm(req, res) {
-  console.log("createItemForm");
   res.render("items/create", {
     title: "Create Item",
+    categories: await db.getItemCategories(),
   });
 }
 
@@ -23,16 +23,18 @@ async function postItem(req, res) {
 
 async function updateItemForm(req, res) {
   const itemId = req.params.id;
+  const categories = await db.getItemCategories(itemId);
   res.render("items/update", {
     title: "Update Item",
+    categories: categories,
     itemId: itemId,
   });
 }
 
 async function updateItem(req, res) {
   const itemId = req.params.id;
-  const { game } = req.body;
-  await db.updateItem(itemId, game);
+  const { game, categories } = req.body;
+  await db.updateItem(itemId, game, categories);
   res.redirect("/");
 }
 

@@ -22,6 +22,8 @@ async function createItem(game, categories) {
   `;
   const res = await pool.query(insertItemQuery, [game]);
   const game_id = res.rows[0].id;
+  console.log("Game ID:", game_id);
+  console.log("Categories:", categories);
   await pool.query(insertCategoriesQuery, [game_id, categories]);
 }
 

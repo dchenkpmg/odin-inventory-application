@@ -12,7 +12,6 @@ async function getItemsByCategory(req, res) {
   const categoryId = req.params.id;
   const items = await db.getItemsByCategory(categoryId);
   const category = await db.getCategoryName(categoryId);
-  console.log(items);
   res.render("categories/items", {
     title: category,
     items,

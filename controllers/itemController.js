@@ -16,8 +16,8 @@ async function createItemForm(req, res) {
 }
 
 async function postItem(req, res) {
-  const { game } = req.body;
-  await db.createItem(game);
+  const { game, categories } = req.body;
+  await db.createItem(game, categories);
   res.redirect("/");
 }
 

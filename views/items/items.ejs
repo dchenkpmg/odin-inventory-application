@@ -1,4 +1,4 @@
-// doubles as front page
+<!-- doubles as front page -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,9 +11,17 @@
     <% if (items && items.length > 0) { %>
     <ul>
       <% items.forEach((item) => { %>
-      <li><%= item.game_name %></li>
+      <li><%= item.game %></li>
+      <button>
+        <a href="/update/<%= item.id %>">Update</a>
+      </button>
+      <form action="/delete/<%= item.id %>" method="POST">
+        <button type="submit">Delete</button>
+      </form>
       <% }) %>
     </ul>
     <% } %>
+    <a href="/create">Create New Item</a>
+    <a href="/categories">View All Categories</a>
   </body>
 </html>
